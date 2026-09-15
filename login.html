@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login • Aplikasi Cuti Pengadilan Agama Raha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A2540 0%, #165b8c 50%, #1f78b3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            max-width: 420px;
+            width: 100%;
+            overflow: hidden;
+            animation: muncul 0.6s ease-out;
+        }
+
+        @keyframes muncul {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === 🏢 FOTO GEDUNG === */
+        .foto-gedung {
+            width: 100%;
+            height: 140px;
+            background-image: url('gedung.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        /* === 🟢 TIGA LOGO DALAM SATU FOTO === */
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 15px 5px;
+        }
+
+        .logo-kumpulan {
+            width: 100%;
+            height: 85px;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        /* === 📝 JUDUL APLIKASI === */
+        .app-title {
+            text-align: center;
+            padding: 5px 20px 20px;
+        }
+
+        .app-title h1 {
+            font-size: 20px;
+            color: #0A2540;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .app-title p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* === 🔤 FORM INPUT === */
+        .form-section {
+            padding: 0 30px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 12px;
+            font-size: 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            background: #fff9c4;
+        }
+
+        /* === 🔵 TOMBOL LOGIN === */
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #0A2540, #1f78b3);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .pesan-error {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+
+        <!-- 🏢 FOTO GEDUNG -->
+        <div class="foto-gedung"></div>
+
+        <!-- 🟢 TIGA LOGO DARI SATU FOTO -->
+        <div class="logo-section">
+            <div class="logo-kumpulan"></div>
+        </div>
+
+        <!-- 📝 JUDUL APLIKASI -->
+        <div class="app-title">
+            <h1>APLIKASI PERMOHONAN CUTI</h1>
+            <p>Pengadilan Agama Raha</p>
+        </div>
+
+        <!-- 🔤 FORM LOGIN -->
+        <div class="form-section">
+            <form onsubmit="cekLogin(event)">
+                <div class="form-group">
+                    <label>👤 Nama Pengguna</label>
+                    <input type="text" id="username" value="kepegawaian_paraha" required>
+                </div>
+
+                <div class="form-group">
+                    <label>🔒 Kata Sandi</label>
+                    <input type="password" id="password" value="kepegawaian1982" required>
+                </div>
+
+                <button type="submit" class="btn-login">MASUK APLIKASI</button>
+                <div class="pesan-error" id="pesanError">❌ Nama Pengguna atau Kata Sandi Salah!</div>
+            </form>
+        </div>
+
+        <div class="footer">© 2026 Pengadilan Agama Raha • Bagian Kepegawaian</div>
+    </div>
+
+    <script>
+        const USER_BENAR = "kepegawaian_paraha";
+        const PASS_BENAR = "kepegawaian1982";
+
+        function cekLogin(e) {
+            e.preventDefault();
+            let usr = document.getElementById("username").value.trim();
+            let pwd = document.getElementById("password").value.trim();
+            let err = document.getElementById("pesanError");
+
+            if (usr === USER_BENAR && pwd === PASS_BENAR) {
+                err.style.display = "none";
+                alert("✅ Login Berhasil! 🥰");
+                window.location.href = "formulir_cuti.html";
+            } else {
+                err.style.display = "block";
+                document.getElementById("password").value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
